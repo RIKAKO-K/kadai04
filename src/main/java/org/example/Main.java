@@ -40,6 +40,8 @@ public class Main {
                 .filter(singer -> singer.getAge() >= 30)         //30歳以上
                 .sorted(Comparator.comparing(Singer::getName))   //アルファベット順
                 .toList();
-        resultFilterSorted.forEach(singer -> System.out.println(singer.getName()+" "+singer.getAge()+"歳 【"+singer.getGender()+"】"));
+        for (Singer singer : resultFilterSorted) {
+            System.out.printf("%-15s %2d歳 【%s】\n", singer.getName(), singer.getAge(), singer.getGender());
+        }
     }
 }
