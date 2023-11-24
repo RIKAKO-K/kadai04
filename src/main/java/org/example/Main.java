@@ -19,19 +19,27 @@ public class Main {
         singerList.add(new Singer("Ed Sheeran", "man",32));
 
         //Filter
+        System.out.println("******女性歌手のみ表示(Filter)*******");
         List<Singer> resultFilter = singerList.stream()
-                .filter(singer -> singer.getGender().equals("Woman"))
+                .filter(singer -> singer.getGender().equals("woman"))
                 .toList();
+        resultFilter.forEach(singer -> System.out.println(singer.getName()+" 【"+singer.getGender()+"】"));
+        System.out.println();
 
         //Sorted
+        System.out.println("******年齢順に並べ替え(Sorted)*******");
         List<Singer> resultSorted = singerList.stream()
                 .sorted(Comparator.comparingInt(Singer::getAge))
                 .toList();
+        resultSorted.forEach(singer -> System.out.println(singer.getAge()+"歳 "+singer.getName()));
+        System.out.println();
 
         //Filter&Sorted
+        System.out.println("******30歳以上の歌手をアルファベット順に並べ替え(Filter & Sorted)*******");
         List<Singer> resultFilterSorted = singerList.stream()
-                .filter(singer -> singer.getAge() >= 30)
-                .sorted(Comparator.comparingInt(Singer::getAge))
+                .filter(singer -> singer.getAge() >= 30)         //30歳以上
+                .sorted(Comparator.comparing(Singer::getName))   //アルファベット順
                 .toList();
+        resultFilterSorted.forEach(singer -> System.out.println(singer.getName()+" "+singer.getAge()+"歳 【"+singer.getGender()+"】"));
     }
 }
